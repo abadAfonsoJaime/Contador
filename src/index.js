@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDom from "react-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import "./index.css";
+import "bootstrap/dist/css/bootstrap.css";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// import Introduction from "./components/intro";
+// import Counters from "./components/fasePrevia/counters";
+import App from "./App";
+
+// npm i bootstrap@4.1.1
+ReactDom.render(<App />, document.getElementById("root"));
