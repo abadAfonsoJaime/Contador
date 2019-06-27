@@ -60,7 +60,7 @@ class Introduction extends Component {
 
   formatCount() {
     const { count } = this.state;
-    const noHay = <span>Zero</span>;
+    //const noHay = <span>Zero</span>;
     return count === 0 ? "Zero" : count;
   }
 }

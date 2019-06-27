@@ -14,7 +14,22 @@ class App extends Component {
       { id: 4, value: 0 }
     ]
   };
+
+  constructor(props) {
+    super(props);
+    console.log("App - Constructor", props);
+    // setState directly in the constructor
+    // this.state = this.props.something
+  }
+
+  componentDidMount() {
+    console.log("App - Mounted");
+    // Ajax Call
+    // this.setState({ newData })
+  }
+
   render() {
+    console.log("App - Mounted");
     return (
       <React.Fragment>
         <NavBar
@@ -22,10 +37,11 @@ class App extends Component {
         />
         <main className="container">
           <Counters
-            counters={this.state.counters}
-            // This are the properties of the props object
+            counters={this.state.counters} // The state of App Component
+            // The props of the Counters Component: 5 properties
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>
@@ -33,13 +49,24 @@ class App extends Component {
     );
   }
 
-  handleIncrement = counter => {
-    console.log(counter);
-    // Cloning the array
+  handleIncrement = theCounter => {
+    console.log(theCounter); // parameter
+    const counters = [...this.state.counters]; // Cloning the array
+    // Index of the first occurrence of counter (paremater) in the counters array
+    const index = counters.indexOf(theCounter);
+    // Clone the counter at the given location to avoid mutation of the state
+    counters[index] = { ...theCounter };
+    counters[index].value++; // Now the state remains inmmutable!
+    //console.log(this.state.counters[0]);
+    this.setState({ counters }); // Finally update the state
+  };
+
+  handleDecrement = theCounter => {
+    console.log("Event Handler 'DECREMENT' called", theCounter);
     const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
+    const index = counters.indexOf(theCounter);
+    counters[index] = { ...theCounter };
+    counters[index].value--;
     this.setState({ counters });
   };
 
